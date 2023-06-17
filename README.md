@@ -14,17 +14,12 @@
 
 `result.png`：示例代码运行结果。
 
-## aigcmn接口
+## aigcmn接口调用
 
-引入模块`aigcmn.py`：
+引入模块`aigcmn.py`，并且利用接口初始化模型：
 
 ```python
 from interface.aigcmn import AiGcMn
-```
-
-实例化抽象类`AiGcMn`来初始化生成器，其需要一个参数`gen_path`来指定已训练好的神经网络模型，其位于`/interface/generator.pth`：
-
-```python
 aigcmn = AiGcMn('interface/generator.pth')
 ```
 
@@ -43,7 +38,7 @@ output_tensor = torch.tensor(input_list)
 gen_output = aigcmn.generate(output_tensor)
 ```
 
-其返回一个`batch_size*1*28*28`的Tensor，即batch_size个单通道的28*28的灰度图。可以将其保存在`/output`中：
+其返回一个`batch_size*1*28*28`的Tensor，即batch_size个单通道的28*28的灰度图，也是用户输入数字的个数。输出的图像保存在`/output`中：
 
 ```python
 from torchvision.utils import save_image
